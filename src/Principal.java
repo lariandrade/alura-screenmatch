@@ -8,9 +8,11 @@ import br.com.alura.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("Barbie");
+
+        Filme meuFilme = new Filme("Barbie");
+       
         meuFilme.setAnoDeLancamento(2023);
+        meuFilme.setDuracaoEmMinutos(90);
 
        // meuFilme.exibeFichaTecnica();
 
