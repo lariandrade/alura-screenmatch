@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
 import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
@@ -10,31 +12,17 @@ public class Principal {
         meuFilme.setNome("Barbie");
         meuFilme.setAnoDeLancamento(2023);
 
-        meuFilme.exibeFichaTecnica();
+       // meuFilme.exibeFichaTecnica();
 
         meuFilme.avalia(8);
         meuFilme.avalia(5);
         meuFilme.avalia(9);
 
-        //System.out.println("Media de avaliacoes do filme: " + meuFilme.pegaMedia());
-        //System.out.println("Total de avaliacoes: " + meuFilme.getTotalDeAvaliacoes()); 
+        ArrayList<Filme> listaFilmes = new ArrayList<>();
 
-        Serie lost = new Serie();
-        lost.setNome("Lost");
-        lost.setAnoDeLancamento(2000);
-        //lost.exibeFichaTecnica();
-        lost.setTemporadas(10);
-        lost.setEpisodiosPorTemporada(10);
-
-        FiltroRecomendacao filtro = new FiltroRecomendacao();
-        //filtro.filtra(meuFilme);
-
-        Episodio episodio = new Episodio();
-        episodio.setNumero(1);
-        episodio.setSerie(lost);
-        episodio.setTotalVisualizacoes(300);
-        filtro.filtra(episodio);
-
+        listaFilmes.add(meuFilme);
+        System.out.println(listaFilmes.size());
+        System.out.println("toString do filme: " + listaFilmes.get(0).toString());
 
     }
 }
