@@ -1,10 +1,7 @@
 package br.com.alura.screenmatch.principal;
 import java.util.ArrayList;
 
-import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
-import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
-import br.com.alura.screenmatch.modelos.Serie;
 
 
 public class Principal {
