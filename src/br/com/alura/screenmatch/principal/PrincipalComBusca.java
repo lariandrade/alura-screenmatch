@@ -8,32 +8,47 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
-import com.google.gson.Gson;
-
 import br.com.alura.screenmatch.modelos.Titulo;
+import br.com.alura.screenmatch.modelos.TituloOmdb;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 
 public class PrincipalComBusca {
-    
+
     public static void main(String[] args) throws IOException, InterruptedException {
-           
+
         Scanner leitura = new Scanner(System.in);
         System.out.println("Digite um filme para busca: ");
         var busca = leitura.nextLine();
 
         String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=ec54102c";
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        try {
+            HttpClient client = HttpClient.newHttpClient();
 
-        String json = response.body();
-        System.out.println(json);
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        Gson gson = new Gson();
+            String json = response.body();
+            System.out.println(json);
 
-        TituloOmdb meuTitulo = gson.fromJson(json, TituloOmdb.class);
-        System.out.println(meuTituloOmdb);
-        
+            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+
+            TituloOmdb meuTituloOmdb = gson.fromJson(json, TituloOmdb.class);
+            System.out.println(meuTituloOmdb);
+
+            Titulo meuTitulo = new Titulo(meuTituloOmdb);
+            System.out.println(meuTitulo);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+            System.out.println(e.getMessage());
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro de argumento");
+        }
 
     }
 
