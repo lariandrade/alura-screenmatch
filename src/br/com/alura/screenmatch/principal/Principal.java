@@ -1,7 +1,7 @@
 package br.com.alura.screenmatch.principal;
 import java.util.ArrayList;
 
-import br.com.alura.screenmatch.modelos.Filme;
+import br.com.alura.screenmatch.modelos.*;
 
 
 public class Principal {
