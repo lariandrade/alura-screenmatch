@@ -8,6 +8,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
+import br.com.alura.screenmatch.excecao.ErroConversaoException;
 import br.com.alura.screenmatch.modelos.Titulo;
 import br.com.alura.screenmatch.modelos.TituloOmdb;
 import com.google.gson.FieldNamingPolicy;
@@ -23,7 +24,7 @@ public class PrincipalComBusca {
         System.out.println("Digite um filme para busca: ");
         var busca = leitura.nextLine();
 
-        String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=ec54102c";
+        String endereco = "https://www.omdbapi.com/?t=" + busca.replace(" ", "+") + "&apikey=ec54102c";
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -48,6 +49,8 @@ public class PrincipalComBusca {
 
         } catch (IllegalArgumentException e) {
             System.out.println("Erro de argumento");
+        }  catch (ErroConversaoException e) {
+            System.out.println(e.getMessage());
         }
 
     }
